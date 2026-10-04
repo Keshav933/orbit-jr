@@ -1,0 +1,20 @@
+[
+  {
+    "type": "greenhouse",
+    "company": "Example Greenhouse Company",
+    "slug": "replace_with_real_greenhouse_slug",
+    "enabled": false
+  },
+  {
+    "type": "lever",
+    "company": "Example Lever Company",
+    "slug": "replace_with_real_lever_slug",
+    "enabled": false
+  },
+  {
+    "type": "ashby",
+    "company": "Example Ashby Company",
+    "slug": "replace_with_real_ashby_slug",
+    "enabled": false
+  }
+]

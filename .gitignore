@@ -1,0 +1,139 @@
+# =========================================================
+# ORBIT-JR
+# =========================================================
+
+# -----------------------------
+# Environment / secrets
+# -----------------------------
+
+.env
+.env.*
+!.env.example
+
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# -----------------------------
+# Python
+# -----------------------------
+
+.venv/
+venv/
+env/
+
+__pycache__/
+**/__pycache__/
+
+*.py[cod]
+*.pyo
+*.pyd
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# -----------------------------
+# Node
+# -----------------------------
+
+node_modules/
+**/node_modules/
+
+dist/
+**/dist/
+
+.vite/
+**/.vite/
+
+coverage/
+
+# -----------------------------
+# User uploads
+# -----------------------------
+
+uploads/
+**/uploads/
+
+*.pdf
+*.doc
+*.docx
+
+# -----------------------------
+# Generated data
+# -----------------------------
+
+data/raw/
+data/processed/
+data/indexes/
+
+**/.cache/
+.cache/
+
+# Keep configuration.
+!data/live_job_sources.json
+
+# -----------------------------
+# Logs / temporary
+# -----------------------------
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# -----------------------------
+# Documents
+# User requested no documents
+# in GitHub.
+# -----------------------------
+
+*.md
+*.txt
+
+docs/
+research/
+setup/
+
+# -----------------------------
+# ML generated artifacts
+# -----------------------------
+
+ml/models/
+ml/checkpoints/
+
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+
+# -----------------------------
+# Database dumps
+# -----------------------------
+
+*.sql.gz
+*.dump
+*.sqlite
+*.sqlite3
+*.db
+
+# -----------------------------
+# IDE / OS
+# -----------------------------
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Build artifacts
+# -----------------------------
+
+*.egg-info/
+build/
+*.egg
