@@ -4,7 +4,8 @@ from functools import lru_cache
 from pathlib import Path
 
 import faiss
-from sentence_transformers import SentenceTransformer
+import numpy as np
+from fastembed import TextEmbedding
 
 from backend.app.database import get_connection
 
@@ -32,13 +33,58 @@ LIVE_SOURCE_TYPES = (
 )
 
 
+class FastEmbedModel:
+    """Small compatibility wrapper with the old encode() interface."""
+
+    def __init__(self, model_name):
+        self.model = TextEmbedding(
+            model_name=model_name
+        )
+
+    def encode(
+        self,
+        texts,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        batch_size=32,
+        **kwargs,
+    ):
+        embeddings = np.asarray(
+            list(
+                self.model.embed(
+                    texts,
+                    batch_size=batch_size,
+                )
+            ),
+            dtype="float32",
+        )
+
+        if normalize_embeddings and len(embeddings) > 0:
+            norms = np.linalg.norm(
+                embeddings,
+                axis=1,
+                keepdims=True,
+            )
+
+            embeddings = embeddings / np.clip(
+                norms,
+                1e-12,
+                None,
+            )
+
+        if convert_to_numpy:
+            return embeddings
+
+        return embeddings
+
+
 @lru_cache(maxsize=1)
 def load_model():
     """
-    Load the embedding model once per Python process.
+    Load the lightweight ONNX embedding model once per process.
     """
 
-    return SentenceTransformer(
+    return FastEmbedModel(
         MODEL_NAME
     )
 

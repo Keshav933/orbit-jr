@@ -4,7 +4,6 @@ from pathlib import Path
 
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 # Add project root to Python path.
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +12,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from backend.app.database import get_connection
+from backend.app.hybrid_retrieval import load_model
 
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -131,9 +131,7 @@ def main():
     print()
     print(f"Loading model: {MODEL_NAME}")
 
-    model = SentenceTransformer(
-        MODEL_NAME
-    )
+    model = load_model()
 
     job_texts = [
         create_job_text(job)

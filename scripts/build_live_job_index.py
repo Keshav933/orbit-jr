@@ -10,9 +10,9 @@ if str(PROJECT_ROOT) not in sys.path:
 
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 from backend.app.database import get_connection
+from backend.app.hybrid_retrieval import load_model
 
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -142,9 +142,7 @@ def build_live_index():
     print()
     print(f"Loading model: {MODEL_NAME}")
 
-    model = SentenceTransformer(
-        MODEL_NAME
-    )
+    model = load_model()
 
     job_texts = [
         create_job_text(job)
