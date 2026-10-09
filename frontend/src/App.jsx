@@ -1362,14 +1362,11 @@ function Dashboard({
 ========================================================= */
 
 function App() {
-  const [showPerformanceNotice, setShowPerformanceNotice] = useState(
-    () => localStorage.getItem("orbitJrPerformanceNoticeDismissed") !== "true",
-  );
+  const [showPerformanceNotice, setShowPerformanceNotice] = useState(true);
 
-  const dismissPerformanceNotice = () => {
-    localStorage.setItem("orbitJrPerformanceNoticeDismissed", "true");
-    setShowPerformanceNotice(false);
-  };
+const dismissPerformanceNotice = () => {
+  setShowPerformanceNotice(false);
+};
 
   useEffect(() => {
     if (!showPerformanceNotice) {
